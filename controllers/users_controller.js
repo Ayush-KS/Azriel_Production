@@ -14,10 +14,9 @@ module.exports.signUp = function(req, res){
         return res.redirect('/users/profile');
     }
 
-
     return res.render('user_sign_up', {
         title: "Azriel | Sign Up"
-    })
+    });
 }
 
 
@@ -27,7 +26,10 @@ module.exports.signIn = function(req, res){
     if (req.isAuthenticated()){
         return res.redirect('/users/profile');
     }
-    return res.render('user_sign_in', {
+    // return res.render('user_sign_in', {
+    //     title: "Azriel | Sign In"
+    // })
+    return res.render('login', {
         title: "Azriel | Sign In"
     })
 }
@@ -44,7 +46,7 @@ module.exports.create = function(req, res){
         if (!user){
             User.create(req.body, function(err, user){
                 if(err){console.log('error in creating user while signing up'); return}
-
+                
                 return res.redirect('/users/sign-in');
             })
         }else{
